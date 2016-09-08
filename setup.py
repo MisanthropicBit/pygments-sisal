@@ -38,5 +38,8 @@ distutils.core.setup(
         'Programming Language :: Python :: 3.3',
         'Programming Language :: Python :: 3.4',
         'Programming Language :: Python :: 3.5'
-    ]
+    ],
+    # Pygments entry point
+    entry_points="[pygments.lexers]"
+                 "sisal=pygments-sisal:SisalLexer"
 )
