@@ -30,7 +30,7 @@ class SisalLexer(RegexLexer):
             ('\'', String.Single, 'singlequoted_string'),
             ('"', String.Double, 'doublequoted_string'),
             ('(function) (.+?)\(', bygroups(Keyword, Name.Function)),
-            ('error\b', Name.Exception),
+            ('error', Name.Exception),
             include('keywords'),
             include('types'),
             include('builtins'),
@@ -77,36 +77,38 @@ class SisalLexer(RegexLexer):
              Keyword.Type)
         ],
         'builtins': [
-            ('sum',  # Standard functions
-             'product',
-             'greatest',
-             'least',
-             'catenate',
-             'floor',
-             'trunc',
-             'max',
-             'min',
-             # Array functions
-             'array_fill',
-             'array_limh',
-             'array_liml',
-             'array_size',
-             'array_prefixsize',
-             'array_adjust',
-             'array_addh',
-             'array_addl',
-             'array_remh',
-             'array_reml',
-             'array_setl',
-             # Stream functions
-             'stream_append',
-             'stream_first',
-             'stream_rest',
-             'stream_empty',
-             'stream_size',
-             'stream_prefixsize'
-             # Record functions
-             'replace', Name.Builtin)
+            (words(['sum',  # Standard functions
+                    'product',
+                    'greatest',
+                    'least',
+                    'catenate',
+                    'floor',
+                    'trunc',
+                    'max',
+                    'min',
+                    # Array functions
+                    'array_fill',
+                    'array_limh',
+                    'array_liml',
+                    'array_size',
+                    'array_prefixsize',
+                    'array_adjust',
+                    'array_addh',
+                    'array_addl',
+                    'array_remh',
+                    'array_reml',
+                    'array_setl',
+                    # Stream functions
+                    'stream_append',
+                    'stream_first',
+                    'stream_rest',
+                    'stream_empty',
+                    'stream_size',
+                    'stream_prefixsize',
+                    # Record functions
+                    'replace'],
+                   suffix='\b'),
+             Name.Builtin),
         ],
         'conversions': [
             ('(integer)(\()',     bygroups(Keyword.Reserved, Text)),
@@ -133,7 +135,7 @@ class SisalLexer(RegexLexer):
             ('>',    Operator),
             ('<=',   Operator),
             ('>=',   Operator),
-            (':=',   Operator),
+            (':=',   Operator)
         ],
         'conditionals': [
             (words(['if',
@@ -161,14 +163,14 @@ class SisalLexer(RegexLexer):
              Keyword)
         ],
         'singlequoted_string': [
-            ('[^\'\\]+', String.Single)
-            ('\\.',      String.Escape),
-            ('\'',       String.Single, '#pop'),
+            (r'[^\'\\]+', String.Single),
+            ('\\.',       String.Escape),
+            ('\'',        String.Single, '#pop')
         ],
         'doublequoted_string': [
-            ('[^"\\]+', String.Double)
-            ('\\.',     String.Escape),
-            ('"',       String.Double, '#pop'),
+            (r'[^"\\]+', String.Double),
+            ('\\.',      String.Escape),
+            ('"',        String.Double, '#pop')
         ],
         'directive': [
             (words(['INCLUDE', 'SUBRANGE', 'PACKED', 'MAIN']),
