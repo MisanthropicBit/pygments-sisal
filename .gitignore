@@ -3,3 +3,6 @@ __pycache__/
 *$py.class
 .tox
 .cache
+build
+dist
+*.egg-info
