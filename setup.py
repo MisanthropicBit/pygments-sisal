@@ -3,7 +3,7 @@
 from __future__ import with_statement
 
 import os
-import distutils.core
+import setuptools
 
 
 def get_version(filename):
@@ -13,9 +13,9 @@ def get_version(filename):
                 return line.split('=')[-1].strip()[1:-1]
 
 
-distutils.core.setup(
+setuptools.setup(
     name='pygments-sisal',
-    version=get_version(os.path.join('pygments-sisal', '__init__.py')),
+    version=get_version(os.path.join('pygments_sisal', '__init__.py')),
     author='Alexander Asp Bock',
     author_email='alexander.asp.bock@gmail.com',
     platforms='All',
@@ -23,13 +23,12 @@ distutils.core.setup(
     license='MIT',
     keywords='pygments, lexer, sisal',
     url='https://github.com/MisanthropicBit/pygments-sisal',
-    packages=['pygments-sisal'],
+    packages=setuptools.find_packages(),
     long_description=open('README.md').read(),
     classifiers=[
         'Development Status :: 5 - Production/Stable',
         'Intended Audience :: Developers',
         'Topic :: Utilities',
-        'Topic :: Terminals',
         'License :: OSI Approved :: MIT License',
         'Programming Language :: Python :: 2.6',
         'Programming Language :: Python :: 2.7',
@@ -40,6 +39,6 @@ distutils.core.setup(
         'Programming Language :: Python :: 3.5'
     ],
     # Pygments entry point
-    entry_points="[pygments.lexers]"
-                 "sisal=pygments-sisal:SisalLexer"
+    entry_points="[pygments.lexers]\n"
+                 "sisal=pygments_sisal:SisalLexer"
 )
