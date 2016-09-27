@@ -7,7 +7,7 @@ SISAL stands for Streams and Iteration In A Single-Assignment Language.
 """
 
 
-from pygments.lexer import RegexLexer, Text, words, bygroups, include
+from pygments.lexer import RegexLexer, Text, words, bygroups, include, default
 from pygments.token import Comment, Name, Keyword, Number, Operator, String
 
 __version__ = '0.1.0'
@@ -171,6 +171,7 @@ class SisalLexer(RegexLexer):
             ('"',       String.Double, '#pop'),
         ],
         'directive': [
-            (words(['INCLUDE', 'SUBRANGE', 'PACKED', 'MAIN']), '?'),
-            ('\n', '#pop')
+            (words(['INCLUDE', 'SUBRANGE', 'PACKED', 'MAIN']),
+             Keyword.Constant),
+            default('#pop')
         ]}

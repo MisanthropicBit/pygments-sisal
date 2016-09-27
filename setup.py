@@ -20,6 +20,7 @@ setuptools.setup(
     author_email='alexander.asp.bock@gmail.com',
     platforms='All',
     description=('A pygments lexer for SISAL'),
+    install_requires=['Pygments>=2.0'],
     license='MIT',
     keywords='pygments, lexer, sisal',
     url='https://github.com/MisanthropicBit/pygments-sisal',
