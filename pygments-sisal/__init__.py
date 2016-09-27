@@ -14,8 +14,8 @@ class SisalLexer(RegexLexer):
     filenames = ['*.sis', '*.sisal']
     tokens = {
         'root': [
-            ('(define) (.+)', bygroups(Keyword.Namespace, Text))
-            ('(global) (.+)', bygroups(Keyword.Namespace, Text))
+            ('(define) (.+)', bygroups(Keyword.Namespace, Text)),
+            ('(global) (.+)', bygroups(Keyword.Namespace, Text)),
             ('% .+$', Comment.Singleline),
             ('^%$ .+$', Comment.Directive, 'directive'),
             ('\'', String.Single, 'singlequoted_string'),
