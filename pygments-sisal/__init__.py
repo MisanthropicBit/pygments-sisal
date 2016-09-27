@@ -1,6 +1,11 @@
 # -*- coding: utf-8 -*-
 
-"""Pygments lexer for SISAL."""
+"""Pygments lexer for SISAL.
+
+SISAL stands for Streams and Iteration In A Single-Assignment Language.
+
+"""
+
 
 from pygments.lexer import RegexLexer, Text, words, bygroups, include
 from pygments.token import Comment, Name, Keyword, Number, Operator, String
