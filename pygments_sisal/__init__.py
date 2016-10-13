@@ -23,14 +23,20 @@ class SisalLexer(RegexLexer):
     filenames = ['*.sis', '*.sisal']
     tokens = {
         'root': [
-            ('(define) (.+)', bygroups(Keyword.Namespace, Text)),
-            ('(global) (.+)', bygroups(Keyword.Namespace, Text)),
-            ('% .+$', Comment.Singleline),
-            ('^%$ .+$', Comment.Directive, 'directive'),
-            ('\'', String.Single, 'singlequoted_string'),
-            ('"', String.Double, 'doublequoted_string'),
-            ('(function) (.+?)\(', bygroups(Keyword, Name.Function)),
-            ('error', Name.Exception),
+            (r'\n', Text),
+            (r'\\\n', Text),
+            (r'\\', Text),
+            (r'(define)(\s+)(.+)', bygroups(Comment.Preproc, Text, Text)),
+            (r'(global)(\s+)(.+)', bygroups(Comment.Preproc, Text, Text)),
+            (r'^%\$', Comment.Directive, 'directive'),
+            (r'% .+$', Comment.Singleline),
+            (r'\'', String.Single, 'singlequoted_string'),
+            (r'"', String.Double, 'doublequoted_string'),
+            (r'(function)(\s+)(.+)(\()',
+             bygroups(Keyword, Text, Name.Function, Text)),
+            (r'error', Name.Exception),
+            (r'\(|\)', Text),
+            # (r'\b(\d)', Number, 'number_constants'),
             include('keywords'),
             include('types'),
             include('builtins'),
@@ -38,7 +44,9 @@ class SisalLexer(RegexLexer):
             include('numbers'),
             include('operators'),
             include('conditionals'),
-            include('loops')
+            include('loops'),
+            (r'[^\S\n]+', Text),
+            (r'\w+', Text)
         ],
         'keywords': [
             (words(['sum',
@@ -53,13 +61,15 @@ class SisalLexer(RegexLexer):
                     'type',
                     'returns',
                     'forward',
-                    'define',
+                    # 'define',
                     'old',
                     'of',
                     'nil',
                     'in',
-                    'end let'],
-                   suffix='\b'),
+                    'end let',
+                    'end function'],
+                   prefix=r'\b',
+                   suffix=r'\b'),
              Keyword.Reserved)
         ],
         'types': [
@@ -73,7 +83,7 @@ class SisalLexer(RegexLexer):
                     'stream',
                     'record',
                     'union'],
-                   suffix='\b'),
+                   suffix=r'\b'),
              Keyword.Type)
         ],
         'builtins': [
@@ -107,19 +117,18 @@ class SisalLexer(RegexLexer):
                     'stream_prefixsize',
                     # Record functions
                     'replace'],
-                   suffix='\b'),
+                   suffix=r'\b'),
              Name.Builtin),
         ],
         'conversions': [
-            ('(integer)(\()',     bygroups(Keyword.Reserved, Text)),
-            ('(real)(\()',        bygroups(Keyword.Reserved, Text)),
-            ('(double_real)(\()', bygroups(Keyword.Reserved, Text)),
-            ('(character)(\()',   bygroups(Keyword.Reserved, Text))
+            (r'(integer)(\()',     bygroups(Keyword.Reserved, Text)),
+            (r'(real)(\()',        bygroups(Keyword.Reserved, Text)),
+            (r'(double_real)(\()', bygroups(Keyword.Reserved, Text)),
+            (r'(character)(\()',   bygroups(Keyword.Reserved, Text))
         ],
         'numbers': [
-            ('-?\d+', Number.Integer),
-            ('-?\d+\.\d+([eE][+-]*\d+)?', Number.Float),
-            ('-?\d+\.\d+([dD][+-]*\d+)?', Number.Float)
+            (r'-?\d+\.\d+([eEdD][+-]?\d+)?', Number.Float),
+            (r'-?\d+',                       Number.Integer)
         ],
         'operators': [
             ('\*',   Operator),
@@ -135,7 +144,12 @@ class SisalLexer(RegexLexer):
             ('>',    Operator),
             ('<=',   Operator),
             ('>=',   Operator),
-            (':=',   Operator)
+            (':=',   Operator),
+            (':',    Operator),
+            ('\[',   Operator),
+            ('\]',   Operator),
+            (',',    Operator),
+            (';',    Operator)
         ],
         'conditionals': [
             (words(['if',
@@ -143,7 +157,7 @@ class SisalLexer(RegexLexer):
                     'elseif',
                     'else',
                     'end if'],
-                   suffix='\b'),
+                   suffix=r'\b'),
              Keyword)
         ],
         'loops': [
@@ -159,21 +173,21 @@ class SisalLexer(RegexLexer):
                     'right',
                     'tree',
                     'end for'],
-                   suffix='\b'),
+                   suffix=r'\b'),
              Keyword)
         ],
         'singlequoted_string': [
             (r'[^\'\\]+', String.Single),
-            ('\\.',       String.Escape),
-            ('\'',        String.Single, '#pop')
+            (r'\\.',       String.Escape),
+            (r'\'',        String.Single, '#pop')
         ],
         'doublequoted_string': [
             (r'[^"\\]+', String.Double),
-            ('\\.',      String.Escape),
-            ('"',        String.Double, '#pop')
+            (r'\\.',      String.Escape),
+            (r'"',        String.Double, '#pop')
         ],
         'directive': [
             (words(['INCLUDE', 'SUBRANGE', 'PACKED', 'MAIN']),
-             Keyword.Constant),
+             Comment.PreProc),
             default('#pop')
         ]}
