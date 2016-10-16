@@ -7,7 +7,8 @@ LaTeX screenshot (lovelace style):
 ![Example LaTeX highlighting with the lovelace style](/latex_screenshot.png)
 
 Terminal screenshot (lovelace style):
-![Example terminal highlighting with the lovelace style](/terminal_screenshot.png)
+<img src="/terminal_screenshot.png" alt="Example terminal highlighting with the lovelace style" width="478">
+<!--![Example terminal highlighting with the lovelace style](/terminal_screenshot.png)-->
 
 ## Install
 
