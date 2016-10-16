@@ -3,7 +3,11 @@
 A [Pygments](http://pygments.org/) lexer for **S**treams and **I**teration In A
 **S**ingle-**A**ssignment **L**anguage (SISAL).
 
-![Example highlighting with the lovelace style](/screenshot_lovelace.png)
+LaTeX screenshot (lovelace style):
+![Example LaTeX highlighting with the lovelace style](/latex_screenshot.png)
+
+Terminal screenshot (lovelace style):
+![Example terminal highlighting with the lovelace style](/terminal_screenshot.png)
 
 ## Install
 
