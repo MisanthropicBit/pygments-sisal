@@ -19,7 +19,7 @@ class SisalLexer(RegexLexer):
     """Lexer for the SISAL programming language."""
 
     name = 'sisal'
-    aliases = ['sis']
+    aliases = ['sis', 'sisal']
     filenames = ['*.sis', '*.sisal']
     tokens = {
         'root': [
@@ -38,9 +38,9 @@ class SisalLexer(RegexLexer):
             (r'\(|\)', Text),
             # (r'\b(\d)', Number, 'number_constants'),
             include('keywords'),
+            include('conversions'),
             include('types'),
             include('builtins'),
-            include('conversions'),
             include('numbers'),
             include('operators'),
             include('conditionals'),
