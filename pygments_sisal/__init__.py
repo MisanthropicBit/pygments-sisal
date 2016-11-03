@@ -86,11 +86,9 @@ class SisalLexer(RegexLexer):
              Keyword.Type)
         ],
         'builtins': [
-            (words(['sum',  # Standard functions
-                    'product',
-                    'greatest',
-                    'least',
-                    'catenate',
+            (words(['abs',  # Standard functions
+                    'exp',
+                    'mod',
                     'floor',
                     'trunc',
                     'max',
