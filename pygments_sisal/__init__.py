@@ -36,7 +36,6 @@ class SisalLexer(RegexLexer):
              bygroups(Keyword, Text, Name.Function, Text)),
             (r'error', Name.Exception),
             (r'\(|\)', Text),
-            # (r'\b(\d)', Number, 'number_constants'),
             include('keywords'),
             include('conversions'),
             include('types'),
