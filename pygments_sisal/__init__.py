@@ -175,7 +175,7 @@ class SisalLexer(RegexLexer):
              Keyword)
         ],
         'singlequoted_string': [
-            (r'[^\'\\]+', String.Single),
+            (r'[^\'\\]+',  String.Single),
             (r'\\.',       String.Escape),
             (r'\'',        String.Single, '#pop')
         ],
