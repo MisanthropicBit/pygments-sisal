@@ -133,6 +133,7 @@ class SisalLexer(RegexLexer):
             ('\+',   Operator),
             ('-',    Operator),
             ('\|\|', Operator),
+            ('\|',   Operator),
             ('~',    Operator),
             ('&',    Operator),
             ('=',    Operator),
