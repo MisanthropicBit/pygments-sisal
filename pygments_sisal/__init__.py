@@ -45,6 +45,7 @@ class SisalLexer(RegexLexer):
             include('operators'),
             include('conditionals'),
             include('loops'),
+            (r'\w+', Text),
             (r'[^\S\n]+', Text),
         ],
         'keywords': [
