@@ -10,7 +10,7 @@ SISAL stands for Streams and Iteration In A Single-Assignment Language.
 from pygments.lexer import RegexLexer, Text, words, bygroups, include, default
 from pygments.token import Comment, Name, Keyword, Number, Operator, String
 
-__version__ = '0.1.1'
+__version__ = '0.1.2'
 __author__ = 'Alexander Asp Bock'
 __license__ = 'MIT'
 __all__ = ['SisalLexer']
