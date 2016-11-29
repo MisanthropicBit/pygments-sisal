@@ -13,6 +13,7 @@ from pygments.token import Comment, Name, Keyword, Number, Operator, String
 __version__ = '0.1.1'
 __author__ = 'Alexander Asp Bock'
 __license__ = 'MIT'
+__all__ = ['SisalLexer']
 
 
 class SisalLexer(RegexLexer):
