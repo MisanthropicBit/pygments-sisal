@@ -1,4 +1,4 @@
-# pygments-sisal [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/MisanthropicBit/pygments-sisal/master/LICENSE)
+# pygments-sisal [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/MisanthropicBit/pygments-sisal/master/LICENSE) [![GitHub version](https://badge.fury.io/gh/MisanthropicBit%2Fpygments-sisal.svg)](https://badge.fury.io/gh/MisanthropicBit%2Fpygments-sisal)
 
 A [Pygments](http://pygments.org/) lexer for **S**treams and **I**teration In A
 **S**ingle-**A**ssignment **L**anguage (SISAL).
